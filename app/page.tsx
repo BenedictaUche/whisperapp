@@ -287,20 +287,15 @@ export default function Home() {
 
           {/* Sidebar - Desktop Only */}
           {showSidebar && (
-            <div className="lg:col-span-1 space-y-6">
+            <div className={`lg:col-span-1 space-y-6 ${sidebarOpen ? 'lg:col-span-1' : 'lg:col-span-1'}`}>
               <UserBadges />
 
               <Sidebar
-        activeItem={activeMenuItem}
-        onItemClick={setActiveMenuItem}
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
-
-              {/* <LocationRadiusControl
-                onRadiusChange={setLocationRadius}
-                onIncognitoToggle={setIncognitoMode}
-              /> */}
+                activeItem={activeMenuItem}
+                onItemClick={setActiveMenuItem}
+                isOpen={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
+              />
             </div>
           )}
         </div>
