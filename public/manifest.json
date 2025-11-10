@@ -1,0 +1,33 @@
+{
+  "name": "WhisperMap",
+  "short_name": "WhisperMap",
+  "description": "Share and discover anonymous whispers from people nearby",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#3C1E4F",
+  "theme_color": "#3C1E4F",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/whisper-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/whisper-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "375x812",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}
