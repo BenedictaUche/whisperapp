@@ -41,7 +41,7 @@ WhisperMap is a revolutionary social platform that allows people to share anonym
 - **File Storage**: Supabase Storage (for voice messages)
 
 
-## 🗄️ Database Schema
+<!-- ## 🗄️ Database Schema
 
 ### Core Tables
 
@@ -117,7 +117,7 @@ Threaded replies to whispers.
 ### Supporting Tables
 
 - `user_sessions`: Temporary anonymous labels for users
-- `abuse_reports`: Content moderation reports
+- `abuse_reports`: Content moderation reports -->
 
 ## Getting Started
 
