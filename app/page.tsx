@@ -204,10 +204,10 @@ export default function Home() {
   const showSidebar = !isMobile
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-background">
       <Header user={user} onSignOut={handleSignOut} />
 
-      <div className="max-w-7xl mx-auto px-4 pb-8 mt-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-6">
         <div className={`grid gap-6 ${showSidebar ? 'lg:grid-cols-4' : 'grid-cols-1'}`}>
           {/* Main Content */}
 
@@ -228,7 +228,7 @@ export default function Home() {
 
             {/* View Toggle */}
             <div className="flex justify-center">
-              <div className="bg-muted/50 p-1 rounded-lg flex gap-1 backdrop-blur-sm">
+              <div className="bg-muted p-1 rounded-lg flex gap-1">
                 <Button
                   onClick={() => setView('list')}
                   variant={view === 'list' ? 'default' : 'ghost'}
@@ -256,9 +256,9 @@ export default function Home() {
               className="min-h-[400px]"
             >
               {view === 'map' && location ? (
-                <div className="h-96 lg:h-[500px]">
+                <div className="h-96 lg:h-[500px] rounded-xl overflow-hidden border border-border">
                   <Suspense fallback={
-                    <div className="h-full bg-muted/50 rounded-xl">
+                    <div className="h-full bg-muted rounded-xl">
                       <LoadingSpinner text="Loading map..." />
                     </div>
                   }>

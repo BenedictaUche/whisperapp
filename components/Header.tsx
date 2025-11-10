@@ -63,23 +63,27 @@ export const Header = ({ user, onSignOut }: HeaderProps) => {
   };
 
   return (
-    <div className="sticky top-0 z-40 bg-yellow-50/95 backdrop-blur-md border-b border-pink-200 shadow-sm">
+    <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className=" px-8 py-3 flex items-center justify-between"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between"
       >
         <motion.div
-          whileHover={{ scale: 1.03 }}
+          whileHover={{ scale: 1.02 }}
           className="cursor-pointer"
         >
-          <div className="flex items-center gap-2">
-            <EarIcon className="text-pink-500 w-6 h-6 animate-bounce" />
-            <h1 className="text-2xl font-bold text-pink-600">whispr</h1>
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-primary/10 rounded-lg">
+              <EarIcon className="text-primary w-6 h-6" />
+            </div>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-bold text-foreground">WhisperMap</h1>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                Anonymous whispers from nearby
+              </p>
+            </div>
           </div>
-          <p className="text-xs sm:text-sm text-gray-600 mt-1">
-            Anonymous whispers from nearby
-          </p>
         </motion.div>
 
         <div className="flex items-center gap-2">
@@ -87,7 +91,7 @@ export const Header = ({ user, onSignOut }: HeaderProps) => {
             onClick={handleNotificationToggle}
             variant="ghost"
             size="sm"
-            className="hidden sm:flex items-center gap-2 text-pink-600"
+            className="hidden sm:flex items-center gap-2 text-muted-foreground hover:text-foreground"
           >
             {notificationsEnabled ? <Bell className="w-4 h-4" /> : <BellOff className="w-4 h-4" />}
             <span className="hidden md:inline">
@@ -99,7 +103,7 @@ export const Header = ({ user, onSignOut }: HeaderProps) => {
             onClick={toggleTheme}
             variant="ghost"
             size="sm"
-            className="hidden sm:flex items-center gap-2 text-pink-600"
+            className="hidden sm:flex items-center gap-2 text-muted-foreground hover:text-foreground"
           >
             {theme === 'velvet' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             <span className="hidden md:inline">
@@ -110,19 +114,24 @@ export const Header = ({ user, onSignOut }: HeaderProps) => {
           {user && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback className="bg-pink-100 text-pink-600 font-bold">
+                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                  <Avatar className="h-10 w-10">
+                    <AvatarFallback className="bg-primary/10 text-primary font-bold">
                       {getUserInitials(user.email)}
                     </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-white shadow-lg border-pink-100" align="end" forceMount>
-                <div className="flex items-center gap-2 p-2">
+              <DropdownMenuContent className="w-56 bg-background shadow-lg border-border" align="end" forceMount>
+                <div className="flex items-center gap-3 p-3">
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback className="bg-primary/10 text-primary font-bold">
+                      {getUserInitials(user.email)}
+                    </AvatarFallback>
+                  </Avatar>
                   <div className="flex flex-col space-y-1 leading-none">
-                    <p className="font-semibold text-sm text-pink-600">{user.email}</p>
-                    <p className="text-xs text-gray-500">Whispers remain anonymous</p>
+                    <p className="font-semibold text-sm text-foreground">{user.email}</p>
+                    <p className="text-xs text-muted-foreground">Whispers remain anonymous</p>
                   </div>
                 </div>
                 <DropdownMenuSeparator />

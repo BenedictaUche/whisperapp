@@ -67,7 +67,7 @@ export const WhisperList = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search whispers..."
-            className="pl-10 bg-background/50 border-border/50 focus:border-primary/50"
+            className="pl-10 bg-background border-border focus:border-primary"
           />
         </div>
       </div>

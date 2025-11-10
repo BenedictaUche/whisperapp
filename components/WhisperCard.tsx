@@ -29,10 +29,10 @@ export const WhisperCard = ({ whisper, index, canDelete, onDelete, currentUserId
     const now = new Date()
     const time = new Date(timestamp)
     const diff = now.getTime() - time.getTime()
-    
+
     const hours = Math.floor(diff / (1000 * 60 * 60))
     const minutes = Math.floor(diff / (1000 * 60))
-    
+
     if (hours > 0) return `${hours}h ago`
     return `${minutes}m ago`
   }
@@ -43,13 +43,13 @@ export const WhisperCard = ({ whisper, index, canDelete, onDelete, currentUserId
     const createdTime = new Date(whisper.timestamp)
     const totalLife = expireTime.getTime() - createdTime.getTime()
     const remainingLife = expireTime.getTime() - now.getTime()
-    
+
     return Math.max(0.3, remainingLife / totalLife)
   }
 
   const handleDelete = async () => {
     if (!onDelete || isDeleting) return
-    
+
     setIsDeleting(true)
     try {
       const success = await onDelete(whisper.id)
@@ -70,7 +70,7 @@ export const WhisperCard = ({ whisper, index, canDelete, onDelete, currentUserId
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: getOpacity(), x: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}
-      className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl p-4 hover:bg-card/90 transition-colors duration-200 space-y-4"
+      className="bg-card border border-border rounded-xl p-4 hover:bg-card/80 transition-colors duration-200 space-y-4 shadow-sm"
     >
       <div className="space-y-3">
         <div className="flex justify-between items-start">
@@ -82,7 +82,7 @@ export const WhisperCard = ({ whisper, index, canDelete, onDelete, currentUserId
             )}
             <p className="text-foreground leading-relaxed">{whisper.text}</p>
           </div>
-          
+
           <div className="flex items-center gap-1">
             {canDelete && onDelete && (
               <Button
@@ -99,7 +99,7 @@ export const WhisperCard = ({ whisper, index, canDelete, onDelete, currentUserId
                 )}
               </Button>
             )}
-            
+
             {onReport && !canDelete && (
               <Button
                 onClick={() => onReport(whisper.id)}
@@ -122,17 +122,17 @@ export const WhisperCard = ({ whisper, index, canDelete, onDelete, currentUserId
           />
         )}
       </div>
-      
+
       {/* Reactions */}
       <WhisperReactions whisperId={whisper.id} currentUserId={currentUserId} />
-      
+
       {/* Footer with metadata and actions */}
-      <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-border/30 pt-3">
+      <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-border pt-3">
         <div className="flex items-center gap-1">
           <MapPin className="w-3 h-3" />
           <span>{formatDistance(whisper.distance)} • ~{Math.round(whisper.distance * 1000 / 100) * 100}m area</span>
         </div>
-        
+
         <div className="flex items-center gap-3">
           <Button
             onClick={() => setShowReplies(!showReplies)}
@@ -143,7 +143,7 @@ export const WhisperCard = ({ whisper, index, canDelete, onDelete, currentUserId
             <MessageCircle className="w-3 h-3 mr-1" />
             {whisper.reply_count || 0}
           </Button>
-          
+
           <Clock className="w-3 h-3" />
           <span>{formatTimeAgo(whisper.timestamp)}</span>
         </div>
@@ -155,7 +155,7 @@ export const WhisperCard = ({ whisper, index, canDelete, onDelete, currentUserId
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="border-t border-border/30 pt-4"
+          className="border-t border-border pt-4"
         >
           <WhisperReplies whisperId={whisper.id} currentUserId={currentUserId} />
         </motion.div>

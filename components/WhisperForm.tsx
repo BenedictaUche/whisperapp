@@ -91,18 +91,18 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="bg-white rounded-3xl border border-gray-100 shadow-xl shadow-black/5"
+        className="bg-card border border-border rounded-xl shadow-lg"
       >
-        <div className={`${compact ? 'p-5' : 'p-7'}`}>
+        <div className={`${compact ? 'p-5' : 'p-6'}`}>
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-            <EarIcon className="text-pink-500 w-6 h-6 animate-bounce" />
-          </div>
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <EarIcon className="text-primary w-5 h-5" />
+              </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900">Share a whispr</h3>
-                <p className="text-sm text-gray-500">What's on your mind?</p>
+                <h3 className="text-lg font-bold text-foreground">Share a whisper</h3>
+                <p className="text-sm text-muted-foreground">What's on your mind?</p>
               </div>
             </div>
             {onClose && (
@@ -110,7 +110,7 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
                 onClick={onClose}
                 variant="ghost"
                 size="sm"
-                className="rounded-full w-8 h-8 p-0 hover:bg-gray-50"
+                className="rounded-full w-8 h-8 p-0 hover:bg-muted"
               >
                 <X className="w-4 h-4" />
               </Button>
@@ -119,16 +119,16 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
 
           {/* Category Selection */}
           <div className="mb-6">
-            <label className="text-sm font-semibold text-gray-900 mb-3 block">Category</label>
+            <label className="text-sm font-semibold text-foreground mb-3 block">Category</label>
             <div className="flex flex-wrap gap-2">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setSelectedCategory('')}
-                className={`px-2.5 py-2 h-7 text-center flex items-center rounded-xl text-xs font-medium transition-all duration-150 ${
+                className={`px-3 py-2 h-8 text-center flex items-center rounded-lg text-sm font-medium transition-all duration-150 ${
                   !selectedCategory
-                    ? 'bg-black text-white'
-                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
                 }`}
               >
                 💬 General
@@ -139,10 +139,10 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-2.5 py-2 h-7 text-center flex items-center rounded-xl text-sm font-medium transition-all duration-150 border ${
+                  className={`px-3 py-2 h-8 text-center flex items-center rounded-lg text-sm font-medium transition-all duration-150 ${
                     selectedCategory === category.id
-                      ? 'text-white border-transparent'
-                      : 'bg-white text-gray-700 hover:bg-gray-50 border-gray-200'
+                      ? 'text-primary-foreground border-transparent'
+                      : 'bg-background text-muted-foreground hover:bg-muted border border-border'
                   }`}
                   style={{
                     backgroundColor: selectedCategory === category.id ? category.color : undefined
@@ -156,10 +156,10 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
                   value={selectedCategory}
                   onValueChange={setSelectedCategory}
                 >
-                  <SelectTrigger className="w-auto px-2.5 py-2 h-7 text-center flex items-center rounded-xl border-gray-200 bg-white hover:bg-gray-50">
+                  <SelectTrigger className="w-auto px-3 py-2 h-8 text-center flex items-center rounded-lg border-border bg-background hover:bg-muted">
                     <span className="text-sm font-medium">+{displayCategories.length - 3} more</span>
                   </SelectTrigger>
-                  <SelectContent className="rounded-xl border-gray-200 shadow-lg">
+                  <SelectContent className="rounded-lg border-border shadow-lg">
                     {displayCategories.slice(3).map((category) => (
                       <SelectItem key={category.id} value={category.id} className="rounded-lg">
                         <div className="flex items-center gap-2">
@@ -200,10 +200,10 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
                 {/* Text Input */}
                 <div className="relative">
                   <div
-                    className={`relative rounded-2xl border transition-all duration-200 ${
+                    className={`relative rounded-lg border transition-all duration-200 ${
                       isFocused
-                        ? 'border-black bg-white shadow-sm'
-                        : 'border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300'
+                        ? 'border-primary bg-background shadow-sm'
+                        : 'border-border bg-muted/50 hover:bg-background hover:border-border/80'
                     }`}
                   >
                     <Textarea
@@ -212,18 +212,18 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
                       onFocus={() => setIsFocused(true)}
                       onBlur={() => setIsFocused(false)}
                       placeholder="Share what's on your mind..."
-                      className={`${compact ? 'min-h-[100px]' : 'min-h-[120px]'} resize-none border-0 bg-transparent placeholder:text-gray-400 text-gray-900 rounded-2xl focus:ring-0 focus:outline-none p-4 pr-16`}
+                      className={`${compact ? 'min-h-[100px]' : 'min-h-[120px]'} resize-none border-0 bg-transparent placeholder:text-muted-foreground text-foreground rounded-lg focus:ring-0 focus:outline-none p-4 pr-16`}
                       maxLength={280}
                     />
 
                     {/* Character Count */}
                     <div className="absolute bottom-4 right-4">
-                      <span className={`text-xs font-medium px-2 py-1 rounded-lg ${
+                      <span className={`text-xs font-medium px-2 py-1 rounded-md ${
                         remainingChars < 20
-                          ? 'bg-red-50 text-red-600'
+                          ? 'bg-destructive/10 text-destructive'
                           : remainingChars < 50
-                          ? 'bg-amber-50 text-amber-600'
-                          : 'bg-gray-100 text-gray-500'
+                          ? 'bg-warning/10 text-warning'
+                          : 'bg-muted text-muted-foreground'
                       }`}>
                         {remainingChars}
                       </span>
@@ -240,16 +240,16 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setShowVoiceRecorder(true)}
-                      className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-150"
+                      className="w-10 h-10 rounded-lg bg-muted hover:bg-muted/80 flex items-center justify-center transition-colors duration-150"
                     >
-                      <Mic className="w-4 h-4 text-gray-600" />
+                      <Mic className="w-4 h-4 text-muted-foreground" />
                     </motion.button>
 
                     {/* Location Status */}
-                    <div className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium ${
+                    <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium ${
                       userLocation
-                        ? 'bg-green-50 text-green-700'
-                        : 'bg-red-50 text-red-700'
+                        ? 'bg-green-500/10 text-green-600'
+                        : 'bg-destructive/10 text-destructive'
                     }`}>
                       {userLocation ? (
                         <CheckCircle className="w-3 h-3" />
@@ -270,15 +270,15 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
                     <Button
                       type="submit"
                       disabled={!text.trim() || !userLocation || isSubmitting}
-                      className={`px-2.5 py-2 h-7 text-center flex items-center rounded-xl font-semibold transition-all duration-150 ${
+                      className={`px-4 py-2 h-8 text-center flex items-center rounded-lg font-semibold transition-all duration-150 ${
                         !text.trim() || !userLocation || isSubmitting
-                          ? 'bg-gray-200 text-gray-400 cursor-not-allowed hover:bg-gray-200'
-                          : 'bg-black text-white hover:bg-gray-800 shadow-sm'
+                          ? 'bg-muted text-muted-foreground cursor-not-allowed'
+                          : 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm'
                       }`}
                     >
                       {isSubmitting ? (
                         <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-gray-300 border-t-white rounded-full animate-spin" />
+                          <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
                           <span>Sharing...</span>
                         </div>
                       ) : (
