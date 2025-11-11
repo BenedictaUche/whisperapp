@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/BenedictaUche/whisperapp.svg?branch=main)](https://travis-ci.com/BenedictaUche/whisperapp)
+[![Build Status](https://travis-ci.com/BenedictaUche/whisperapp.svg?branch=master)](https://travis-ci.com/BenedictaUche/whisperapp)
 
 # WhisperMap (whispr)
 
