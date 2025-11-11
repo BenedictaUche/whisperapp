@@ -67,7 +67,7 @@ export const Header = ({ user, onSignOut }: HeaderProps) => {
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between"
+        className="max-w-full mx-auto px-4 sm:px-6 lg:px-[100px] py-4 flex items-center justify-between"
       >
         <motion.div
           whileHover={{ scale: 1.02 }}
@@ -122,7 +122,7 @@ export const Header = ({ user, onSignOut }: HeaderProps) => {
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-background shadow-lg border-border" align="end" forceMount>
+              <DropdownMenuContent className="w-full bg-background shadow-lg border-border" align="end" forceMount>
                 <div className="flex items-center gap-3 p-3">
                   <Avatar className="h-8 w-8">
                     <AvatarFallback className="bg-primary/10 text-primary font-bold">

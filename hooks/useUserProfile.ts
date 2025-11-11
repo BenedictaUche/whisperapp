@@ -14,7 +14,7 @@ export const useUserProfile = () => {
 
     try {
 
-      const { data, error } = await supabase
+      const { data, error }: { data: any; error: any } = await supabase
         .from('user_profiles')
         .select('*')
         .eq('user_id', user.id)
@@ -43,7 +43,7 @@ export const useUserProfile = () => {
           }
         }
 
-        const { data: created, error: createError } = await supabase
+        const { data: created, error: createError }: { data: any; error: any } = await supabase
           .from('user_profiles')
           .insert(newProfile)
           .select()

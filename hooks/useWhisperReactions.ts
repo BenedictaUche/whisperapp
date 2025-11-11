@@ -45,7 +45,7 @@ export const useWhisperReactions = (whisperId: string) => {
       fetchReactions()
     } catch (error) {
       // Handle duplicate key constraint violation (user already reacted with this emoji)
-      if (error.code === '23505') {
+      if (typeof error === 'object' && error !== null && 'code' in error && (error as { code: string }).code === '23505') {
         console.warn('Reaction already exists, refreshing state')
         fetchReactions() // Re-sync client state
       } else {
@@ -80,7 +80,7 @@ export const useWhisperReactions = (whisperId: string) => {
     if (!user) return
 
     const existingReaction = reactions.find(r => r.user_id === user.id && r.emoji === emoji)
-    
+
     if (existingReaction) {
       await removeReaction(emoji)
     } else {
@@ -95,7 +95,7 @@ export const useWhisperReactions = (whisperId: string) => {
 
     const subscription = supabase
       .channel(`reactions_${whisperId}`)
-      .on('postgres_changes', 
+      .on('postgres_changes',
         { event: '*', schema: 'public', table: 'whisper_reactions', filter: `whisper_id=eq.${whisperId}` },
         () => fetchReactions()
       )
