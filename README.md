@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/<BenedictaUche>/<https://github.com/BenedictaUche/whisperapp>.svg?branch=main)](https://travis-ci.com/<BenedictaUche>/<https://github.com/BenedictaUche/whisperapp>)
+
 # WhisperMap (whispr)
 
 An anonymous location-based messaging platform where users can share whispers from nearby locations. Built with Next.js, TypeScript, and Supabase.
