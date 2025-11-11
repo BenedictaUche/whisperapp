@@ -6,9 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prepare": "husky install",
-    "type-check": "tsc --noEmit"
+    "lint": "eslint",
+    "prepare": "husky",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -80,11 +81,14 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6"
   },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "npm run lint",
-      "npm run type-check",
-      "git add"
+ "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,scss,md}": [
+      "prettier --check",
+      "prettier --write"
     ]
   }
 }
