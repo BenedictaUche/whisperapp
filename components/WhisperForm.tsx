@@ -102,7 +102,7 @@ export const WhisperForm = ({ onSubmit, isLoading, userLocation, onClose, compac
               </div>
               <div>
                 <h3 className="text-lg font-bold text-foreground">Share a whisper</h3>
-                <p className="text-sm text-muted-foreground">What's on your mind?</p>
+                <p className="text-sm text-muted-foreground">What&apos;s on your mind?</p>
               </div>
             </div>
             {onClose && (

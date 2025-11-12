@@ -111,7 +111,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               className="text-white/80 text-lg leading-relaxed max-w-lg"
             >
               Connect with your community through anonymous location-based whispers.
-              Share thoughts, discover stories, and explore what's happening around you.
+              Share thoughts, discover stories, and explore what&apos;s happening around you.
             </motion.p>
 
             {/* Feature highlights */}

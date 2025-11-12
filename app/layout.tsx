@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description: 'Share and discover anonymous whispers from people nearby',
   manifest: '/manifest.json',
   icons: {
-    icon: '/whisper-icon.png',
-    apple: '/whisper-icon.png',
+    icon: '/assets/images/anonymous-man.jpg',
+    apple: '/assets/images/anonymous-man.jpg',
   },
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   themeColor: [

@@ -1,0 +1,12 @@
+<!-- FEATURES TO ADD -->
+- [x] Anonymous Avatars for users as profile pictures. Users will select from an array of avatars during registration or skip as profile picture upload will not be allowed to protect privacy.
+- [x] Dark mode for the application interface to enhance user experience during low-light conditions.
+- [ ] Two-factor authentication (2FA) for enhanced account security.
+- [ ] Randomized usernames. Users will be assigned temporary pseudonyms that change periodically to protect their identity.
+- [ ] Temporary Location Tokens that allow users to share their location for a limited time.
+- [ ] Encrypted messaging between users to ensure privacy and security of communications.
+- [ ] No IP logging policy to protect user anonymity.
+- [ ] Highlight popular whispers based on user interactions.
+- [ ] Implement a content moderation system to filter out inappropriate content.
+- [ ] Add a feature for users to report inappropriate whispers or behavior.
+- [ ] Show Heatmap view of whispers in a general area map to visualize activity density without identifying users.

@@ -47,4 +47,26 @@ const AvatarFallback = React.forwardRef<
 ));
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
+interface AnonymousAvatarProps {
+  avatarUrl?: string | null
+  fallbackText?: string
+  className?: string
+}
+
+const AnonymousAvatar = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  AnonymousAvatarProps
+>(({ avatarUrl, fallbackText = 'A', className }, ref) => {
+  return (
+    <Avatar ref={ref} className={className}>
+      {avatarUrl ? (
+        <AvatarImage src={avatarUrl} alt="User avatar" />
+      ) : (
+        <AvatarFallback>{fallbackText}</AvatarFallback>
+      )}
+    </Avatar>
+  )
+})
+AnonymousAvatar.displayName = 'AnonymousAvatar'
+
 export { Avatar, AvatarImage, AvatarFallback };

@@ -18,7 +18,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@/components/ui/tabs'
-import { Eye, EyeOff, AlertTriangle, Loader2, EarIcon } from 'lucide-react'
+import { Eye, EyeOff, AlertTriangle, Loader2, EarIcon, User } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 interface AuthFormProps {
@@ -36,6 +36,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     email: '',
     password: '',
     confirmPassword: '',
+    avatar: '',
   })
 
   const [signInData, setSignInData] = useState({
@@ -64,6 +65,11 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     }
 
     try {
+      // Store selected avatar temporarily for profile creation
+      if (signUpData.avatar) {
+        sessionStorage.setItem('selectedAvatar', signUpData.avatar)
+      }
+
       const { error } = await supabase.auth.signUp({
         email: signUpData.email,
         password: signUpData.password,
@@ -73,7 +79,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
       if (error) throw error
 
       setSuccess('Check your email to confirm your account')
-      setSignUpData({ email: '', password: '', confirmPassword: '' })
+      setSignUpData({ email: '', password: '', confirmPassword: '', avatar: '' })
     } catch (error: any) {
       setError(error.message)
     } finally {
@@ -269,6 +275,57 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                       required
                       className="rounded-xl bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-primary"
                     />
+                  </div>
+                  <div>
+                    <Label className="text-white/90">Choose Avatar (Optional)</Label>
+                    <div className="grid grid-cols-3 gap-3 mt-2">
+                      <button
+                        type="button"
+                        onClick={() => setSignUpData({ ...signUpData, avatar: '/assets/images/anonymous-man.jpg' })}
+                        className={`p-3 rounded-xl border-2 transition-all duration-200 ${
+                          signUpData.avatar === '/assets/images/anonymous-man.jpg'
+                            ? 'border-primary bg-primary/20'
+                            : 'border-white/20 bg-white/10 hover:border-white/40'
+                        }`}
+                      >
+                        <img
+                          src="/assets/images/anonymous-man.jpg"
+                          alt="Anonymous Man"
+                          className="w-12 h-12 rounded-full mx-auto mb-2"
+                        />
+                        <span className="text-xs text-white/80">Man</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSignUpData({ ...signUpData, avatar: '/assets/images/anonymous-woman.png' })}
+                        className={`p-3 rounded-xl border-2 transition-all duration-200 ${
+                          signUpData.avatar === '/assets/images/anonymous-woman.png'
+                            ? 'border-primary bg-primary/20'
+                            : 'border-white/20 bg-white/10 hover:border-white/40'
+                        }`}
+                      >
+                        <img
+                          src="/assets/images/anonymous-woman.png"
+                          alt="Anonymous Woman"
+                          className="w-12 h-12 rounded-full mx-auto mb-2"
+                        />
+                        <span className="text-xs text-white/80">Woman</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSignUpData({ ...signUpData, avatar: '' })}
+                        className={`p-3 rounded-xl border-2 transition-all duration-200 ${
+                          signUpData.avatar === ''
+                            ? 'border-primary bg-primary/20'
+                            : 'border-white/20 bg-white/10 hover:border-white/40'
+                        }`}
+                      >
+                        <div className="w-12 h-12 rounded-full mx-auto mb-2 bg-white/20 flex items-center justify-center">
+                          <User className="w-6 h-6 text-white/60" />
+                        </div>
+                        <span className="text-xs text-white/80">Skip</span>
+                      </button>
+                    </div>
                   </div>
                   <Button
                     type="submit"

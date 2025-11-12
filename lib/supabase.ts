@@ -7,7 +7,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.error('Missing Supabase environment variables. Please check your .env file.')
 }
 
-export const supabase = supabaseUrl && supabaseAnonKey 
+export const supabase = supabaseUrl && supabaseAnonKey
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null
 
@@ -65,6 +65,7 @@ export type UserProfile = {
   max_streak: number
   last_activity_date?: string
   badges: string[]
+  avatar_url?: string
   preferences: {
     incognito_mode: boolean
     location_radius: number

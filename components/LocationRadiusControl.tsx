@@ -83,7 +83,7 @@ export const LocationRadiusControl = ({ onRadiusChange, onIncognitoToggle }: Loc
             className="text-xs text-muted-foreground bg-muted/50 p-3 rounded-lg"
           >
             <p>
-              🕵️ Incognito mode enabled. Your location won't be shared when browsing whispers,
+              🕵️ Incognito mode enabled. Your location won&apos;t be shared when browsing whispers,
               but you can still post whispers with your location.
             </p>
           </motion.div>

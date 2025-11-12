@@ -18,14 +18,16 @@ export const useUserProfile = () => {
         .from('user_profiles')
         .select('*')
         .eq('user_id', user.id)
-        .single()
-        .throwOnError()
+        .maybeSingle()
 
-      if (error && error.code !== 'PGRST116') {
+      if (error) {
         throw error
       }
 
       if (!data) {
+        // Check for avatar selected during registration
+        const selectedAvatar = typeof window !== 'undefined' ? sessionStorage.getItem('selectedAvatar') : null
+
         // Create new profile
         const newProfile = {
           user_id: user.id,
@@ -35,6 +37,7 @@ export const useUserProfile = () => {
           current_streak: 0,
           max_streak: 0,
           badges: [],
+          avatar_url: selectedAvatar || null,
           preferences: {
             incognito_mode: false,
             location_radius: 5,
@@ -43,12 +46,16 @@ export const useUserProfile = () => {
           }
         }
 
+        // Clear the temporary storage
+        if (selectedAvatar && typeof window !== 'undefined') {
+          sessionStorage.removeItem('selectedAvatar')
+        }
+
         const { data: created, error: createError }: { data: any; error: any } = await supabase
           .from('user_profiles')
           .insert(newProfile)
           .select()
           .single()
-          .throwOnError()
 
         if (createError) {
           // Handle duplicate key error by re-fetching
@@ -93,6 +100,10 @@ export const useUserProfile = () => {
     } catch (error) {
       console.error('Error updating profile:', error)
     }
+  }
+
+  const setAvatar = async (avatarUrl: string | null) => {
+    await updateProfile({ avatar_url: avatarUrl || undefined })
   }
 
   const updatePreferences = async (preferences: Partial<UserProfile['preferences']>) => {
@@ -162,6 +173,7 @@ export const useUserProfile = () => {
     updateProfile,
     updatePreferences,
     incrementActivity,
+    setAvatar,
     refreshProfile: fetchProfile
   }
 }
